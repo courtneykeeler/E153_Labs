@@ -1,0 +1,110 @@
+
+\documentclass[12pt,letterpaper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+% info for header block in upper right hand corner
+%\name{Courtney Keeler and Stephen Pinto}
+%\class{E153}
+%\assignment{Lab \#1}
+%\duedate{September 30, 2013}
+
+\begin{document}
+
+Tektronix 2212 Oscilloscope\\
+Hewlett Packard 33120A Function generator\\
+Pomona 4550B (10X probe)
+
+\begin{center}
+Presentation of sine waves\\
+    \begin{tabular}{| c | c | c |}
+    \hline
+    
+    frequency & analog & digital \\
+    \hline
+    1 Hz & * & 283.1 m$\text{V}_{\text{pp}}$, 991.5 mHz \\
+    1 kHz & 1.012 $\text{V}_{\text{pp}}$, 1.025 kHz & 1.003 $\text{V}_{\text{pp}}$, 1.002 kHz \\
+    1 MHz & 1.003 $\text{V}_{\text{pp}}$, 1.003 MHz & 991.7 m$\text{V}_{\text{pp}}$, 1.00 MHz \\
+    10 MHz & 976.2mV, 10.06 MHz & ** \\
+    
+    \hline
+    \end{tabular}
+\end{center}
+* Can see the sin wave moving across the screen but cannot capture samples and therefore cannot measure signal
+\\[.1in]
+** Can't be measured since time scale minimum is .4us/div while storing is on
+\\[.3in]
+Using the multiplier on the clock allows for a sec/div of 4ns
+\\[.3in]
+
+\begin{center}
+
+Capacitance\\
+	\begin{tabular}{| c | c |}
+	\hline
+	
+	BNC/Coax & 10X Probe \\
+	\hline
+	108 pF & 18 pF \\
+
+	\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+Resistive Loading\\
+	\begin{tabular}{| c | c |}
+	\hline
+	
+	BNC/Coax & 10X Probe \\
+	\hline
+	1 M$\Omega $ & 10 M$\Omega$ \\
+
+	\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+Reactive Loading\\
+	\begin{tabular}{| c | c | c |}
+	\hline
+	
+	Frequency & BNC & 10X Probe \\
+	\hline
+	100 Hz & 78.1 M$\Omega$ & 690 M$\Omega$\\
+	1000 Hz & 7.81 M$\Omega$ & 69 M$\Omega$\\
+	1 MHz & 7.81 k$\Omega$ & 69 k$\Omega$\\
+	
+	\hline
+	\end{tabular}
+\end{center}
+
+For the 10X probe:
+$$\text{C}_{\text{total}} = 14.4 \text{pF}$$
+$$ \frac{1}{\omega \text{C}_{\text{total}}} = 10\text{M}\Omega$$
+$$ \omega = 6.94 \text{kHz} $$
+
+%
+%Measure the capacitance of a BNC/Coax probe: .108nF (.011nF is the splitter alone, multimeter always shows .004 or .005 nF)
+%
+%Measure the input capacitance of the 10X probe (Pomona 4550B): 
+%$C_{probe}$ = .013 nF
+%$C_{equiv}$ = .021nF
+%Sanity check: $C_{equiv}$ should work out to be $C_{probe}$ in series with $C_{BNC}$ (where $C_{BNC}$ = 0.053nF). 
+%
+%Nevermind, we ignore the capacitance due to the length of cable attached to the 10X probe.
+%
+% Experimental corner frequency for the BNC cable: 135 kHz (this is the frequency where the amplitude is .707)
+% Multisim: 122.7 kHz difference: BNC splitter introduces another capacitor, multisim model doesn't include that or the resistance from the cables
+% we measure the BNC splitter capacitance to verify: 12pF 
+% Square wave: back to 1Vpp (909 mV). 10x corner: 164.2 mV, turned a square wave into a triangle wave
+% Triangle: 678 mV (frequency limited (100kHz), can't scope it at corner frequency)
+%
+% Experimental corner frequency for the 10X probe:  (starting at 100mV) 1.15MHz
+% Multisim: difference:
+% square wave: 91.67 mV. 10x corner: 16.42 mV
+% triangle wave: frequency limited
+%
+
+\end{document}
