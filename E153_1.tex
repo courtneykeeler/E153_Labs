@@ -68,8 +68,9 @@ Table \ref{table:SinWave} shows that the analog scope is favored for high freque
 \end{enumerate}
 \subsection*{Results}
 \begin{center}
-
-Capacitance\\
+\begin{table}[ht]
+\caption{Capacitance}
+\centering
 	\begin{tabular}{| c | c |}
 	\hline
 	
@@ -79,13 +80,20 @@ Capacitance\\
 
 	\hline
 	\end{tabular}
+\end{table}
 \end{center}
 
 \subsection*{Calculations}
-The resistive and reactive loading are found by circuit analysis
+The resistive and reactive loading are found by circuit analysis. For the BNC cable, the circuit is shown in Figure 
+%\ref{BNCcircuit}
+. We can see that the only resistive element is the 1M$\Omega$ resistor, so this resistance value becomes the resistive loading of the circuit. The circuit of the 10X probe is shown in Figure 
+%\ref{10Xprobe}
+. Here we see that there are two resistive elements in series. The total resistive loading of this circuit becomes the sum of the two resistance values: 10M$\Omega$. These results are summarized in Table \ref{table:ResistiveLoading}.
 
 \begin{center}
-Resistive Loading\\
+\begin{table}[ht]
+\caption{Resistive Loading} % title of Table
+\centering 
 	\begin{tabular}{| c | c |}
 	\hline
 	
@@ -95,21 +103,40 @@ Resistive Loading\\
 
 	\hline
 	\end{tabular}
+	\label{table:ResistiveLoading}
+\end{table}
 \end{center}
 
+To calculate the reactive loading of the BNC and 10X probe circuits, we analyze the capacitors only (if these circuits included inductors, they would be analyzed here too). Examining Figure 
+%\ref{BNCcircuit}
+, we see two capacitors in parallel. To find the total reactive loading, we add their values and find the impedance of the combined capacitance (Z):
+$$ \text{C}_{\text{total}} = 108 \text{pF} + 20 \text{pF} = 128 \text{pF} $$
+$$ \text{Z} = \frac{1}{\text{j}\omega\text{C}_{\text{total}}} $$
+The $\omega$ term refers to signal frequency, and we must evaluate for 100 Hz, 1kHz, and 1MHz. The results are summarized in Table \ref{table:ReactiveLoading}.
+
+Figure 
+%\ref{10Xprobe}
+ shows the only reactive elements are three capacitors: one in series with two in parallel. 
+ %actually having the figures will make explanation much easier (using C1, C2, etc)
+The total capacitance of these three capacitances is
+$$ math $$
+
+ 
 \begin{center}
-Reactive Loading\\
+\begin{table}[ht]
+\caption{Reactive Loading}
+\centering
 	\begin{tabular}{| c | c | c |}
-	\hline
-	
+	\hline	
 	Frequency & BNC & 10X Probe \\
 	\hline
 	100 Hz & 78.1 M$\Omega$ & 690 M$\Omega$\\
 	1000 Hz & 7.81 M$\Omega$ & 69 M$\Omega$\\
-	1 MHz & 7.81 k$\Omega$ & 69 k$\Omega$\\
-	
+	1 MHz & 7.81 k$\Omega$ & 69 k$\Omega$\\	
 	\hline
 	\end{tabular}
+	\label{table:ReactiveLoading}
+\end{table}
 \end{center}
 
 \section*{Section B.2: The 10X Scope Probe}
