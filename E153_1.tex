@@ -15,19 +15,30 @@ Harvey Mudd College}
 \begin{center}
 List of Materials:
 \begin{itemize}
-\item Tektronix 2212 Oscilloscope
-\item Hewlett Packard 33120A Function generator
-\item Pomona 4550B (10X probe)
+	\item Tektronix 2212 Oscilloscope
+	\item Hewlett Packard 33120A Function generator
+	\item Pomona 4550B (10X probe)
+	\item Multimeter
 \end{itemize}
 \end{center}
 
 \section*{Section A: Analog Oscilloscope vs. Digital Storage Oscilloscope}
-
-\begin{center}
-Presentation of sine waves\\
+\subsection*{Procedure}
+\begin{enumerate}
+	\item Turn on the Hewlett Packard 33120A Function generator, set the out term to High Z and the amplitude to 1 $\text{V}_{\text{pp}}$
+	\item Connect the of the function generator to the channel 1 input of the Tektronix 2212 Oscilloscope with a BNC cable
+	\item Turn on digital storing on the oscilloscope (digital)
+	\item Set the function generator frequency to 1 Hz and record the amplitude and frequency of the signal displayed by the oscilloscope
+	\item Repeat the previous step with frequencies of 1kHz, 1MHz, and 10MHz
+	\item Repeat the two previous steps with the oscilloscope's digital storing turned off (analog)
+\end{enumerate}
+\subsection*{Results}
+\begin{table}[ht]
+\caption{Presentation of Sin Waves} % title of Table
+\centering 
     \begin{tabular}{| c | c | c |}
     \hline  
-    frequency & analog & digital \\
+    Frequency & Analog & Digital \\
     \hline
     1 Hz & * & 283.1 m$\text{V}_{\text{pp}}$, 991.5 mHz \\
     1 kHz & 1.012 $\text{V}_{\text{pp}}$, 1.025 kHz & 1.003 $\text{V}_{\text{pp}}$, 1.002 kHz \\
@@ -35,16 +46,27 @@ Presentation of sine waves\\
     10 MHz & 976.2mV, 10.06 MHz & ** \\
     \hline
     \end{tabular}
-\end{center}
+    \label{table:SinWave}
+\end{table}
 * Can see the sin wave moving across the screen but cannot capture samples and therefore cannot measure signal
-\\[.1in]
+
 ** Can't be measured since time scale minimum is .4us/div while storing is on
-\\[.3in]
-Using the multiplier on the clock allows for a sec/div of 4ns
-\\[.3in]
+\\[.1in]
+Table \ref{table:SinWave} shows that the analog scope is favored for high frequency measurements, while the digital scope is favored for low frequency measurements. This is due to the fact that the analog oscilloscope cannot store past values, so at low frequencies, the oscilloscope displays a continuously moving signal. For a higher frequency signal, this is not an issue because the movement of the signal on the screen cannot be perceived by the human eye and appears static (and can therefore be measured). The digital oscilloscope can store past data points and therefore display a measurable signal at very low frequencies. However, the time required to perform an A/D conversion and store the value limits the upper frequency at which the digital oscilloscope can operate. While this setting stills displays data for a 10MHz signal, the user is unable to zoom far enough in on the screen to measure the frequency of the signal seen.
 
 \section*{Section B.1: The 10X Scope Probe}
-
+\subsection*{Procedure}
+\begin{enumerate}
+	\item Cut two pieces of wire and strip the both ends of each
+	\item Insert one end of each wire in each slot of the capacitance measurement slot in the Multimeter
+	\item Connect a BNC splitter to one end of a BNC/Coax cable
+	\item Connect the positive lead of the splitter to the available end of the wire in the positive capacitance measurement terminal
+	\item Repeat the above step for the negative lead and negative terminal
+	\item Record the displayed capacitance
+	\item Replace the BNC/Coax cable with the Pomona 4550B 10X probe (attaching probe tip to positive terminal and ground clip to negative terminal)
+	\item Record the displayed capacitance
+\end{enumerate}
+\subsection*{Results}
 \begin{center}
 
 Capacitance\\
@@ -59,7 +81,8 @@ Capacitance\\
 	\end{tabular}
 \end{center}
 
-\section*{Section B.2: The 10X Scope Probe}
+\subsection*{Calculations}
+The resistive and reactive loading are found by circuit analysis
 
 \begin{center}
 Resistive Loading\\
@@ -88,6 +111,8 @@ Reactive Loading\\
 	\hline
 	\end{tabular}
 \end{center}
+
+\section*{Section B.2: The 10X Scope Probe}
 
 For the 10X probe:
 $$\text{C}_{\text{total}} = 14.4 \text{pF}$$
