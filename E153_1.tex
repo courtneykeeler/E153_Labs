@@ -16,15 +16,19 @@ Harvey Mudd College}
 \date{September 30, 2013}
 \maketitle
 
-\begin{center}
-List of Materials:
+\section*{List of Materials}
 \begin{itemize}
 	\item Tektronix 2212 Oscilloscope
 	\item Hewlett Packard 33120A Function generator
 	\item Pomona 4550B (10X probe)
-	\item Multimeter
+	\item Elenco LCM-1950 Multimeter
+	\item Breadboard
+	\item 10k$\Omega$ resistor
+	\item 22 gauge wire and wire cutters
 \end{itemize}
-\end{center}
+
+\section*{Purpose}
+The purpose of this lab is to learn the difference between a BNC cable and a 10X probe, and how to analyze signals captured with both devices.
 
 \section*{Section A: Analog Oscilloscope vs. Digital Storage Oscilloscope}
 \subsection*{Procedure}
@@ -62,7 +66,7 @@ Table \ref{table:SinWave} shows that the analog scope is favored for high freque
 \subsection*{Procedure}
 \begin{enumerate}
 	\item Cut two pieces of wire and strip the both ends of each
-	\item Insert one end of each wire in each slot of the capacitance measurement slot in the Multimeter
+	\item Insert one end of each wire in each slot of the capacitance measurement slot in the Elenco LCM-1950 Multimeter
 	\item Connect a BNC splitter to one end of a BNC/Coax cable
 	\item Connect the positive lead of the splitter to the available end of the wire in the positive capacitance measurement terminal
 	\item Repeat the above step for the negative lead and negative terminal
@@ -133,6 +137,13 @@ The $\omega$ term refers to signal frequency, and we must evaluate for 100 Hz, 1
 For the 10x probe model, Figure \ref{fig:probe_circuit} shows the only reactive elements are three capacitors - one in series with two in parallel. The total capacitance of these three capacitors is
 $$ \text{C}_{\text{total}} = \frac{18 \text{pF} (53 \text{pF} + 20 \text{pF})}{18 \text{pF} + 53 \text{pF} + 20 \text{pF}} = 14 \text{pF} $$
 
+Figure 
+%\ref{10Xprobe}
+ shows the only reactive elements are three capacitors: $\text{C}_{\text{BNC}}$, $\text{C}_{\text{scope}}$, and $\text{C}_{\text{probe}}$.
+The total capacitance of these three capacitances is
+$$ \text{C}_{\text{total}} = 18\text{pF} + (53 \text{pF} || 20\text{pF}) = 14.4 \text{pF}$$
+$$ \text{Z} = \frac{1}{\text{j}\omega\text{C}_{\text{total}}} $$
+The $\omega$ term refers to signal frequency, and we must evaluate for 100 Hz, 1kHz, and 1MHz. The results are summarized in Table \ref{table:ReactiveLoading}.
  
 \begin{center}
 \begin{table}[ht]
@@ -364,6 +375,37 @@ triangle_fun = @(t, n) A * (8/pi^2) * gains(n) .* (-1).^(n-1) .* ...
                             (sin(2*pi*(2*n - 1)*f*t) ./ (2*n - 1).^2);
 
 triangle = sum(bsxfun(triangle_fun, t, harmonics), 1)';
+
+In order to find the frequency at which the absolute value of the capacitive loading is equal to the resistive loading in the 10X probe, we use the following equation:
+$$\text{C}_{\text{total}} = 14.4 \text{pF}$$
+$$ \frac{1}{\omega \text{C}_{\text{total}}} = 10\text{M}\Omega$$
+$$ \omega = 6.94 \text{kHz} $$
+
+\section*{Section B.2: The 10X Scope Probe}
+The normal output impedance of the HP function generator is found by examining the device documentation. 
+
+
+%
+%Measure the capacitance of a BNC/Coax probe: .108nF (.011nF is the splitter alone, Multimeter always shows .004 or .005 nF)
+%
+%Measure the input capacitance of the 10X probe (Pomona 4550B): 
+%$C_{probe}$ = .013 nF
+%$C_{equiv}$ = .021nF
+%Sanity check: $C_{equiv}$ should work out to be $C_{probe}$ in series with $C_{BNC}$ (where $C_{BNC}$ = 0.053nF). 
+%
+%Nevermind, we ignore the capacitance due to the length of cable attached to the 10X probe.
+%
+% Experimental corner frequency for the BNC cable: 135 kHz (this is the frequency where the amplitude is .707)
+% Multisim: 122.7 kHz difference: BNC splitter introduces another capacitor, multisim model doesn't include that or the resistance from the cables
+% we measure the BNC splitter capacitance to verify: 12pF 
+% Square wave: back to 1Vpp (909 mV). 10x corner: 164.2 mV, turned a square wave into a triangle wave
+% Triangle: 678 mV (frequency limited (100kHz), can't scope it at corner frequency)
+%
+% Experimental corner frequency for the 10X probe:  (starting at 100mV) 1.15MHz
+% Multisim: difference:
+% square wave: 91.67 mV. 10x corner: 16.42 mV
+% triangle wave: frequency limited
+%
 
 end
 \end{verbatim}
