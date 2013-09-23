@@ -4,6 +4,8 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage[font=small,labelfont=bf]{caption}
+\newlength \figwidth
+\setlength \figwidth {0.75\linewidth}
 
 \begin{document}
 
@@ -75,7 +77,7 @@ Table \ref{table:SinWave} shows that the analog scope is favored for high freque
 	\begin{tabular}{| c | c |}
 	\hline
 	
-	BNC/Coax & 10X Probe \\
+	\textbf{BNC/Coax} & \textbf{10X Probe} \\
 	\hline
 	108 pF & 21 pF \\
 
@@ -148,33 +150,74 @@ $$ \text{C}_{\text{total}} = \frac{18 \text{pF} (53 \text{pF} + 20 \text{pF})}{1
 \end{table}
 \end{center}
 
+Note that for the 10x probe, the reactive and resistive loading magnitudes are equivalent at
+
+$$ \frac{1}{2 \pi f\text{C}_{\text{total}}} = 9 M\Omega \Rightarrow f = 1.22 kHz $$.
+
 \section*{Section B.2: The 10X Scope Probe}
+\subsection*{Procedure}
+\begin{enumerate}
+	\item Connect the function generator to the bread board using a BNC cable and splitter
+	\item Put a 10k$\Omega$ resisistor in series with the generator output
+	\item Connect a BNC cable from the resistor to the oscilloscope
+	\item Turn the function generator on and output a sine wave
+	\item Increase the frequency until the magnitude measured by the scope is 0.707 times that coming from the function generator (1 $\text{V}_{\text{pp}}$)
+	\item Record that frequency (which is the corner frequency)
+	\item Repeat the steps 3-5 for a 10x probe
+	\item Build the circuit models in ModelSim and run the simulation tool to verify the measured corner frequencies
+	\item Use MATLAB to estimate what a square wave and triangle wave would look like through each circuit at the corner frequency and 10x the corner frequency
+\end{enumerate}
 
-For the 10X probe:
-$$\text{C}_{\text{total}} = 14.4 \text{pF}$$
-$$ \frac{1}{\omega \text{C}_{\text{total}}} = 10\text{M}\Omega$$
-$$ \omega = 6.94 \text{kHz} $$
+\subsection*{Results}
 
-%
-%Measure the capacitance of a BNC/Coax probe: .108nF (.011nF is the splitter alone, multimeter always shows .004 or .005 nF)
-%
-%Measure the input capacitance of the 10X probe (Pomona 4550B): 
-%$C_{probe}$ = .013 nF
-%$C_{equiv}$ = .021nF
-%Sanity check: $C_{equiv}$ should work out to be $C_{probe}$ in series with $C_{BNC}$ (where $C_{BNC}$ = 0.053nF). 
-%
-%Nevermind, we ignore the capacitance due to the length of cable attached to the 10X probe.
-%
-% Experimental corner frequency for the BNC cable: 135 kHz (this is the frequency where the amplitude is .707)
-% Multisim: 122.7 kHz difference: BNC splitter introduces another capacitor, multisim model doesn't include that or the resistance from the cables
-% we measure the BNC splitter capacitance to verify: 12pF 
-% Square wave: back to 1Vpp (909 mV). 10x corner: 164.2 mV, turned a square wave into a triangle wave
-% Triangle: 678 mV (frequency limited (100kHz), can't scope it at corner frequency)
-%
-% Experimental corner frequency for the 10X probe:  (starting at 100mV) 1.15MHz
-% Multisim: difference:
-% square wave: 91.67 mV. 10x corner: 16.42 mV
-% triangle wave: frequency limited
-%
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio=true]{lab1_images/BNC_sine_corner.png} 
+	\caption{Oscilloscope reading at corner frequency (135 kHz) for BNC cable in series with a 10k resistor. }
+	\label{fig:bnc_corner}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio=true]{lab1_images/10x_sine_corner.png} 
+	\caption{Oscilloscope reading at corner frequency (1.15 MHz) for 10x probe in series with a 10k resistor. }
+	\label{fig:probe_corner}
+\end{figure}
+
+Figure \ref{fig:bnc_circuit} shows the model used for the BNC circuit (a low pass filter), and Figure \ref{fig:bnc_corner} shows the oscilloscope reading at the corner frequency (135 kHz). Similarly, Figure \ref{fig:probe_circuit} shows the model for the 10x probe circuit, and Figure \ref{fig:probe_corner} shows the scope reading at the corner frequency (1.15 MHz).
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\figwidth, keepaspectratio=true]{lab1_images/BNC_bode.png} 
+	\caption{Multisim created Bode Plot for the BNC circuit. The information box summarizes the onscreen marker - y2 is in dB and x2 is in Hz. }
+	\label{fig:bnc_bode}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\figwidth, keepaspectratio=true]{lab1_images/10x_bode.png} 
+	\caption{Multisim created Bode Plot for the 10x probe circuit. The information box summarizes the onscreen marker - y2 is in dB and x2 is in Hz. }
+	\label{fig:probe_bode}
+\end{figure}
+
+Figures \ref{fig:bnc_bode} and \ref{fig:probe_bode} show the bode plots, produced by MultiSim, for the BNC circuit and the 10x scope circuit respectively. Figures \ref{fig:bnc_circuit} and \ref{fig:probe_circuit} show the MultiSim circuits which correspond to these bode plots. Table \ref{table:corners} summarizes the expected and measured corner frequencies for the two circuits.
+
+\begin{center}
+\begin{table}[ht]
+\caption{Corner Frequencies (expected and estimated)}
+\centering 
+	\begin{tabular}{| c | c | c |}
+	\hline
+	& \textbf{BNC/Coax} & \textbf{10X Probe} \\
+	\hline
+	\textbf{Expected} & 122 kHz & 1.09 MHz \\
+	\textbf{Measured} & 135 kHz & 1.15 MHz \\
+	\hline
+	\end{tabular}
+	\label{table:corners}
+\end{table}
+\end{center}
+
+The measured corner frequencies for the BNC and 10x probe circuits are 10\% and 6\% greater than expected respectively. These differences can be partially attributed to the fact that our model does not take the connecting cable between the function generator and bread board into account, which has a non-neglible capacitance. Similarly, the BNC splitters used to connect components of the circuit also have a non-zero capacitance that would affect the measured corner frequency.
 
 \end{document}
