@@ -3,6 +3,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{amsmath}
+\usepackage[font=small,labelfont=bf]{caption}
 
 \begin{document}
 
@@ -43,7 +44,7 @@ List of Materials:
     1 Hz & * & 283.1 m$\text{V}_{\text{pp}}$, 991.5 mHz \\
     1 kHz & 1.012 $\text{V}_{\text{pp}}$, 1.025 kHz & 1.003 $\text{V}_{\text{pp}}$, 1.002 kHz \\
     1 MHz & 1.003 $\text{V}_{\text{pp}}$, 1.003 MHz & 991.7 m$\text{V}_{\text{pp}}$, 1.00 MHz \\
-    10 MHz & 976.2mV, 10.06 MHz & ** \\
+    10 MHz & 976.2m$\text{V}_{\text{pp}}$, 10.06 MHz & ** \\
     \hline
     \end{tabular}
     \label{table:SinWave}
@@ -76,7 +77,7 @@ Table \ref{table:SinWave} shows that the analog scope is favored for high freque
 	
 	BNC/Coax & 10X Probe \\
 	\hline
-	108 pF & 18 pF \\
+	108 pF & 21 pF \\
 
 	\hline
 	\end{tabular}
@@ -84,11 +85,25 @@ Table \ref{table:SinWave} shows that the analog scope is favored for high freque
 \end{center}
 
 \subsection*{Calculations}
-The resistive and reactive loading are found by circuit analysis. For the BNC cable, the circuit is shown in Figure 
-%\ref{BNCcircuit}
-. We can see that the only resistive element is the 1M$\Omega$ resistor, so this resistance value becomes the resistive loading of the circuit. The circuit of the 10X probe is shown in Figure 
-%\ref{10Xprobe}
-. Here we see that there are two resistive elements in series. The total resistive loading of this circuit becomes the sum of the two resistance values: 10M$\Omega$. These results are summarized in Table \ref{table:ResistiveLoading}.
+The resistive and reactive loading are found by circuit analysis. For the BNC cable, the circuit is shown in Figure \ref{fig:bnc_circuit}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio=true]{lab1_images/BNC_circuit.png} 
+	\caption{Circuit model of a BNC cable connecting a function generator (with an additional 10k resistor in between) to an oscilloscope}
+	\label{fig:bnc_circuit}
+\end{figure}
+
+We can see that the only resistive element is the 1M$\Omega$ resistor, so this resistance value becomes the resistive loading of the circuit. The circuit of the 10X probe is shown in Figure \ref{fig:probe_circuit}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio=true]{lab1_images/10x_circuit.png} 
+	\caption{Circuit model of a 10x probe connecting a function generator (with an additional 10k resistor in between) to an oscilloscope}
+	\label{fig:probe_circuit}
+\end{figure}
+ 
+Here we see that there are two resistive elements in series. The total resistive loading of this circuit becomes the sum of the two resistance values: 10M$\Omega$. These results are summarized in Table \ref{table:ResistiveLoading}.
 
 \begin{center}
 \begin{table}[ht]
@@ -107,19 +122,13 @@ The resistive and reactive loading are found by circuit analysis. For the BNC ca
 \end{table}
 \end{center}
 
-To calculate the reactive loading of the BNC and 10X probe circuits, we analyze the capacitors only (if these circuits included inductors, they would be analyzed here too). Examining Figure 
-%\ref{BNCcircuit}
-, we see two capacitors in parallel. To find the total reactive loading, we add their values and find the impedance of the combined capacitance (Z):
+To calculate the reactive loading of the BNC and 10X probe circuits, we analyze the capacitors only (if these circuits included inductors, they would be analyzed here too). For the BNC model, Figure \ref{fig:bnc_circuit} shows two capacitors in parallel. To find the total reactive loading, we add their values and find the impedance (Z) of the combined capacitance:
 $$ \text{C}_{\text{total}} = 108 \text{pF} + 20 \text{pF} = 128 \text{pF} $$
 $$ \text{Z} = \frac{1}{\text{j}\omega\text{C}_{\text{total}}} $$
 The $\omega$ term refers to signal frequency, and we must evaluate for 100 Hz, 1kHz, and 1MHz. The results are summarized in Table \ref{table:ReactiveLoading}.
 
-Figure 
-%\ref{10Xprobe}
- shows the only reactive elements are three capacitors: one in series with two in parallel. 
- %actually having the figures will make explanation much easier (using C1, C2, etc)
-The total capacitance of these three capacitances is
-$$ math $$
+For the 10x probe model, Figure \ref{fig:probe_circuit} shows the only reactive elements are three capacitors - one in series with two in parallel. The total capacitance of these three capacitors is
+$$ \text{C}_{\text{total}} = \frac{18 \text{pF} (53 \text{pF} + 20 \text{pF})}{18 \text{pF} + 53 \text{pF} + 20 \text{pF}} = 14 \text{pF} $$
 
  
 \begin{center}
@@ -130,9 +139,9 @@ $$ math $$
 	\hline	
 	Frequency & BNC & 10X Probe \\
 	\hline
-	100 Hz & 78.1 M$\Omega$ & 690 M$\Omega$\\
-	1000 Hz & 7.81 M$\Omega$ & 69 M$\Omega$\\
-	1 MHz & 7.81 k$\Omega$ & 69 k$\Omega$\\	
+	100 Hz & 12.4 M$\Omega$ & 110 M$\Omega$\\
+	1000 Hz & 1.24 M$\Omega$ & 11.0 M$\Omega$\\
+	1 MHz & 1.24 k$\Omega$ & 11.0 k$\Omega$\\	
 	\hline
 	\end{tabular}
 	\label{table:ReactiveLoading}
