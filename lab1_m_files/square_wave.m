@@ -10,6 +10,5 @@ square_fun = @(t, n) A * (4/pi) * gains(n) .* ...
 
 square = sum(bsxfun(square_fun, t_in, harmonics), 1)';
 
-
 end
 
