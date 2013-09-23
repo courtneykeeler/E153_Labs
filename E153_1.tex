@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage[font=small,labelfont=bf]{caption}
+\usepackage[justification=centering]{caption}
 \newlength \figwidth
 \setlength \figwidth {0.75\linewidth}
 
@@ -168,7 +169,7 @@ $$ \frac{1}{2 \pi f\text{C}_{\text{total}}} = 9 M\Omega \Rightarrow f = 1.22 kHz
 	\item Use MATLAB to estimate what a square wave and triangle wave would look like through each circuit at the corner frequency and 10x the corner frequency
 \end{enumerate}
 
-\subsection*{Results}
+\subsection*{Measured Results}
 
 \begin{figure}
 	\centering
@@ -185,6 +186,8 @@ $$ \frac{1}{2 \pi f\text{C}_{\text{total}}} = 9 M\Omega \Rightarrow f = 1.22 kHz
 \end{figure}
 
 Figure \ref{fig:bnc_circuit} shows the model used for the BNC circuit (a low pass filter), and Figure \ref{fig:bnc_corner} shows the oscilloscope reading at the corner frequency (135 kHz). Similarly, Figure \ref{fig:probe_circuit} shows the model for the 10x probe circuit, and Figure \ref{fig:probe_corner} shows the scope reading at the corner frequency (1.15 MHz).
+
+\subsection*{Simulated Results}
 
 \begin{figure}
 	\centering
@@ -220,6 +223,37 @@ Figures \ref{fig:bnc_bode} and \ref{fig:probe_bode} show the bode plots, produce
 
 The measured corner frequencies for the BNC and 10x probe circuits are 10\% and 6\% greater than expected respectively. These differences can be partially attributed to the fact that our model does not take the connecting cable between the function generator and bread board into account, which has a non-neglible capacitance. Similarly, the BNC splitters used to connect components of the circuit also have a non-zero capacitance that would affect the measured corner frequency.
 
+\subsection*{Fourier Analysis}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio=true]{lab1_images/MATLAB_BNC_square.png} 
+	\caption{BNC circuit's simulated response to a square wave at the corner frequency and 10 times the corner frequency.}
+	\label{fig:bnc_square}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio=true]{lab1_images/MATLAB_BNC_triangle.png} 
+	\caption{BNC circuit's simulated response to a square wave at the corner frequency and 10 times the corner frequency.}
+	\label{fig:bnc_triangle}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio=true]{lab1_images/MATLAB_10x_square.png} 
+	\caption{10x probe circuit's simulated response to a square wave at the corner frequency and 10 times the corner frequency.}
+	\label{fig:probe_square}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth, keepaspectratio=true]{lab1_images/MATLAB_10x_triangle.png} 
+	\caption{10x probe circuit's simulated response to a square wave at the corner frequency and 10 times the corner frequency.}
+	\label{fig:probe_triangle}
+\end{figure}
+
+Figures \ref{fig:bnc_square}, \ref{fig:bnc_triangle}, \ref{fig:probe_square}, and \ref{fig:probe_triangle} show the results of a MATLAB-aided analysis of square and triangle wave inputs into both systems at the corner frequency and 10 times the corner frequency. The analysis used the MATLAB transfer function construct alongside its linear simulation tool with inputs built from the Fourier Series of square and triangle waves. The inputs at 10x the corner frequencies are time scaled by 10 so they match up on the same time axis as the input. Note that since the analysis models both systems as a first order low pass filter, the two pairs of plots (one for BNC and one for the 10x probe) are exactly the same just on a different time scale.
 
 \section*{Section C: Appendix}
 \subsection*{MATLAB Code}
