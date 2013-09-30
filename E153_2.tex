@@ -99,20 +99,20 @@ As described in the lab description provided in class, one of the mystery circui
 Figure 
 %\ref{BNC_circuit_B}
 shows the entire circuit for the BNC cable and mystery circuit. However,
-we can ignore the resistive elements of the circuits because we know the fundamental frequency of the mystery circuits is 20.33 kHz, which is much greater than 1 kHz, the frequency at which the contribution from resistive and reactive elements are roughly the same. At frequencies higher than 1 kHz, the effects of the resistive elements are negligible. This simplifies the circuit into: an unknown capacitor in series with the BNC capacitor and scope capacitor in parallel. These values were measured following the Lab \# procedure and found to be:
+we can ignore the resistive elements of the circuits because we know the fundamental frequency of the mystery circuits is 20.33 kHz, which is much greater than 1 kHz, the frequency at which the contribution from resistive and reactive elements are roughly the same. At frequencies higher than 1 kHz, the effects of the resistive elements are negligible. This simplifies the circuit into: an unknown capacitor in series with the BNC capacitor and scope capacitor in parallel. These values were measured following the Lab \#1 procedure and found to be:
 $$
-C_{\text{known}} = (C_{ \text{BNC}} | C_{\text{scope}}) = (122 \text{pF} | 20 \text{pF}) = 142 \text{pF}
+C_{\text{known}} = (C_{ \text{BNC}} | C_{\text{scope}}) = (122 \text{pF} | 20 \text{pF}) = 142 \text{pF}.
 $$
 From this information, we can write the frequency response of the mystery circuit B in terms of the unknown impedance $Z_{\text{unknown}}$ and the known impedance calculated above.
 $$
-H(jw) = \frac{1}{1+\frac{C_{\text{unknown}}}{C_{\text{known}}}} = \frac{1}{1+\frac{C_{\text{unknown}}}{142 \text{pF}}}
+H(jw) = \frac{1}{1+\frac{C_{\text{unknown}}}{C_{\text{known}}}} = \frac{1}{1+\frac{C_{\text{unknown}}}{142 \text{pF}}}.
 $$
 We know that the magnitude of the frequency response of the entire mystery circuit B must be equal to the ratio of the triangle wave peak to peak voltage measured with the BNC cable to the triangle wave peak to peak voltage measured with the 10X probe. This we know because we assume the value of the peak to peak voltage of the triangle wave of circuit B measured by the 10X probe multiplied by ten will be the true output without any effect from measuring devices (The value of ten was calculated in Lab \#1). Since the two capacitors in series are effectively acting as a voltage divider, by measuring the gain between the voltage in (which we assume to be the output voltage measured with the 10X probe) and the voltage out (which will be the output voltage measured with the BNC cable), we can calculate the value of the capacitor that would have caused such a gain.
 $$
-H(jw) = \frac{1}{1+(\frac{C_{\text{unknown}}}{142 \text{pF}})} = \frac{1.453 \text{V}}{10(.2961\text{V})}
+H(jw) = \frac{1}{1+(\frac{C_{\text{unknown}}}{142 \text{pF}})} = \frac{1.453 \text{V}}{10(.2961\text{V})}.
 $$
 $$
-C_{\text{unknown}} = 147 \text{pF}
+C_{\text{unknown}} = 147 \text{pF}.
 $$
 
 \subsection*{Mystery Circuit Models}
@@ -129,7 +129,7 @@ $$
 \begin{circuitikz} \draw
  (0,0) to[sinusoidal voltage source] (0,2)
  (0,0) to[short, -o] (2,0)
- (0,2) to[C=$\SI{100}{\pico\farad}$, -o] (2,2)
+ (0,2) to[C=$\SI{147}{\pico\farad}$, -o] (2,2)
 ;\end{circuitikz} \\
 \textbf{Mystery Circuit B}
 \end{center}
