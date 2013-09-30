@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage[justification=centering]{caption}
+\usepackage{circuitikz}
 \newlength \figwidth
 \setlength \figwidth {0.75\linewidth}
 
@@ -25,10 +26,11 @@ Harvey Mudd College}
 \end{itemize}
 
 \section*{Purpose}
-The purpose of this lab is to apply the knowledge learned in Lab \#1 about the difference between a BNC cable and a 10X probe, and how to analyze signals captured with both devices.
+The purpose of this lab is to apply the models for a BNC cable and 10X probe developed in lab 1 by using the two probes to determine the output characteristics of two "mystery circuits."
 
 \section*{Mystery Circuit}
 \subsection*{Procedure}
+
 \begin{enumerate}
 \item View the output waveform of circuit A using the Tektronix 2212 Oscilloscope and BNC cable
 \item Repeat the previous step using the 10X probe
@@ -82,5 +84,8 @@ The fundamental frequency of the waveform shown in Figures \ref{fig:bnc_circuit_
     \end{tabular}
     \label{table:vpp}
 \end{table}
+
+\section*{Analysis}
+As described in the lab description provided in class, one of the mystery circuits has only an output resistance and the other has only an output capacitance. To determine which circuit is which, we compared the measurements of the two circuits from the 10x probe with those of the BNC - treating the 10x probe measurements to be the true output and the BNC measurements to be an affected output. As learned in the first lab, the BNC cable is only a capacitor between signal and GND. Meaning for the purely resistive mystery circuit, the overall circuit, including the BNC probe, is a low pass filter. Whereas for the purely capacitive mystery circuit, the overall circuit is simply two capacitors in series with the function generator. Meaning the BNC measurements for the resistive circuit should exhibit filtering effects (namely the input signal's shape should not be fully intact) when compared to the corresponding 10x probe results, while the BNC measurements for the capacitive circuit should only exhibit reduced amplitudes and nothing more (as if it were going through a voltage divider) when compared to the 10x probe results. Figure x, the BNC results of circuit A, show significant filtering effects when compared with Figure y, the 10x results of circuit A. Because of this, we determined the 
 
 \end{document}
