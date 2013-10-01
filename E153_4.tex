@@ -1,0 +1,172 @@
+\documentclass[12pt,letterpaper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[justification=centering]{caption}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{siunitx}
+\newlength \figwidth
+\setlength \figwidth {0.75\linewidth}
+
+\begin{document}
+
+\title{E153 Laboratory Assignment \#4}
+\author{Courtney Keeler and Stephen Pinto\\
+Harvey Mudd College}
+\date{October 21, 2013}
+\maketitle
+
+\section*{List of Materials}
+\begin{itemize}
+	\item Tektronix 2212 Oscilloscope
+	\item Pomona 4550B (10X probe)
+	\item Elenco LCM-1950 Multimeter
+	\item Lab Station 7 Transformer (s.n. 139 01 665)
+	\item 2.2 kOhm resistor
+	\item Electrolytic capacitors (10 microFarad, 3.3 micro Farad, 100 microFarad, and .47 microFarad)
+\end{itemize}
+
+\section*{Purpose}
+The purpose of this lab is to build transformer circuits and do neat things with them.
+
+\section*{3.2 Half-Wave Rectifier}
+\subsection*{Procedure}
+
+\begin{enumerate}
+\item Construct the circuit shown in Figure %\ref{3.2_circuit}
+\item Use a 10X probe to view the output waveform on the oscilloscope
+\item Measure the voltage across just the diode to find the voltage drop across the diode
+\item Measure just the voltage out of the transformer to see the original Vpeak
+\item Measure the voltage across the resistor with the full circuit intact to see the final Vpeak
+\item Compare the original and final Vpeak values
+\end{enumerate}
+
+\subsection*{Results}
+%\includegraphics{3.2_waveform.png}
+\subsection*{Analysis}
+The waveform shown in FIgure 
+%\ref{3.2_waveform.png}
+ is what is expected. It is a half wave rectifier, so we expect to see only the positive half of the input sin wave. The frequency remains at 60 Hz. Vpeak straight out of the transformer is 20.00V and when we construct the full circuit the vpeak is 19.3 V.
+ 
+ Voltage drop across the diode is 70.0 mV (so .700 V because 10X probe)
+ 
+ Polarity: on the forward bias, we get a positive output, and on the reverse bias, we get zero
+ 
+ Vrms is equal to Vpeak divided by root 2. So Vrms = 14.14 V , which is less than the 19.3 V we measured. This is because the first is an rms value.
+\subsection*{Calculations}
+
+\section*{3.3 Full-Wave Bridge Rectifier}
+\subsection*{Procedure}
+
+\begin{enumerate}
+\item Construct the circuit shown in Figure %\ref{3.2_circuit.png}
+\item View the output waveform using the 10X probe and oscilloscope
+\item To zero the scope to the transformer, turn the transformer off, leave the probe across the resistor, and match the cursor to the signal (should be flat line)
+\item Look at the near-zero regions and measure the duration of the flat regions
+\end{enumerate}
+
+\subsection*{Results}
+
+we see a peak voltage of 18.6 V. This is less than the previous sections because now the voltage goes over two diodes, therefore the drop is twice the voltage drop across a diode (1.4 V). We expected, then, to see 18.6 V, we saw 18.6, which agrees. 
+
+The duration of the flat region is 364.00 microseconds.
+
+\subsection*{Analysis}
+
+If one of the resistors were to be reversed, ground would be forced in two places, making things go boom.
+
+The reason for the flat regions near zero is due to the voltage being between 0 and 0.7 volts. At this time, the diode is taking all of the voltage drop. 
+
+\subsection*{Calculations}
+
+\section*{3.4 Ripple}
+\subsection*{Procedure}
+
+\begin{enumerate}
+\item Construct the circuit shown in Figure %\ref{3.4_circuit}
+\item View the output waveform on the oscilloscope
+\item Zero the cursor
+\item Measure Vr and Vm
+\item Replace the capacitor with the remaining values, one at a time
+\end{enumerate}
+
+\subsection*{Results}
+
+\begin{table}[ht]
+\caption{Experimental Ripple Results} % title of Table
+\centering 
+    \begin{tabular}{| c | c | c | c | c |}
+    \hline  
+    C (uF) & Vr (V) & Vm (V) & $\Delta$ t & R (k$\Omega$) \\
+    \hline
+    10.4 & 14.23 & 18.6 & 6.1344 & 2.169 \\
+    21.3 &16.10 & 18.6& 6.4406 & 2.169 \\
+    3.128 & 9.69 & 18.6& 4.9656 &  2.169 \\
+    10.4 & 10.98 &18.6& 5.1719 &.977 \\
+    10.4 &14.42 & 18.6& 5.8625 & 2.363 \\
+    10.4 &16.36 &18.6& 6.4719 & 4.608 \\
+    \hline
+    \end{tabular}
+    \label{table:vpp}
+\end{table}
+
+%Experimental:
+%C = 10.4 uF,  Vr = 14.23 V, Vm = 18.6, delta t = 6.1344 ms, R = 2.169 kOhms
+%C = 21.3 uF, Vr = 16.10 V, Vm = 18.6, delta t = 6.4406 ms, R = 2.169 kOhms
+%C = 3.128 uF, Vr = 9.69 V, Vm = 18.6, delta t = 4.9656 ms, R =  2.169 kOhms
+%C = 10.4 uF,  Vr = 10.98 V, Vm = 18.6, delta t = 5.1719 ms, R = .977 kOhms
+%C = 10.4 uF, Vr = 14.42 V, Vm = 18.6, delta t = 5.8625 ms, R = 2.363 kOhms
+%C = 10.4 uF, Vr = 16.36 V, Vm = 18.6, delta t = 6.4719 ms, R = 4.608 kOhms
+
+\subsection*{Analysis}
+
+\subsection*{Calculations}
+This is how to come up with an equation to find the capacitor value from the ripple voltage: Stephen's tiny red notebook
+
+\section*{Transformers 3.7}
+\subsection*{Procedure}
+
+\begin{enumerate}
+\item Construct the circuit shown in Figure %\ref{3.7_circuit}
+\item View the output on the oscilloscope for a range of amplitudes of sin waves
+\item Repeat the above step for square waves, then triangle waves
+\end{enumerate}
+
+\subsection*{Results}
+
+Sin wave: 8kHz output for 8kHz input, .45 Vm out for .9 Vpp in
+as amplitude increases... 2 Vpp in, .5747 V out (it's approaching the drop across the diode)
+The higher the input voltage, the more current going through the resistor (and thus the diode), since only one diode is forward biased at a time and takes the current
+
+Square: same thing, except closer to a square wave. The smaller the voltage, the closer to a square wave.
+
+Triangle: gets turned into a square wave as the voltage input increases. 
+
+\subsection*{Analysis}
+
+Limiting voltage to 0.7 volts. 
+
+We can double the amplitude of the voltage limited output by adding another diode to each path of the current. 
+
+\subsection*{Calculations}
+
+V = IR
+for 1mA load, we need 5kOhm resistor. (5.53 kOhm). Vout = 4.93 V, so Iout = 0.89mA
+for 50mA, we need 100 Ohm. (99.7 Ohm). Vout = 4.93 V, so Iout = .049A
+
+\end{document}
+
+% photo 250: 3.2, voltage straight output from the transformer
+%photo 252: 3.2, voltage across resistor
+%photo 253: 3.3, voltage out of final circuit
+%photo 254: 3.2, voltage across resistor of final circuit
+%photo 255: 3.2, voltage out of transformer
+%photo 256: 3.3, voltage across resistor of the final circuit
+%photo 257: 3.4, how to measure delta t
+%photo 258: 3.4, how to measure Vr
+%photo 259: 3.7, sin, 2Vpp
+%photo 260: 3.7, square, 2Vpp
+%photo 261: 3.7, triangle, 2Vpp
+%photo 262: 3.7, triangle, 2Vpp (we see double output)
