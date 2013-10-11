@@ -32,7 +32,7 @@ The purpose of this lab is to understand diodes and build circuits to measure th
 
 \begin{enumerate}
 \item Construct the circuit shown in Figure \ref{fig:circuit_1}, where the 1 M$\Omega$ resistor represents the internal resistance of the digital multimeter.
-\item Vary the value of V1 based on the values in Table %\ref{table:voltage_values}.
+\item Vary the value of V1 based on the values in Table \ref{table:circuit_1}.
 \item Use the voltage measured through the multimeter to calculate the voltage drop across the diode as well as the current through the diode.
 \item Construct the circuit shown in Figure \ref{fig:circuit_2}, where the 1 M$\Omega$ resistor represents the internal resistance of the multimeter measuring the voltage drop across R2.
 \item Vary the voltage V1 based on the values in Table %\ref{table:voltage_values}.
@@ -64,6 +64,53 @@ The purpose of this lab is to understand diodes and build circuits to measure th
 \end{figure}
 
 \section*{Results}
+
+\begin{table}[ht]
+\caption{Measured and calculated values, Circuit 1} % title of Table
+\centering 
+    \begin{tabular}{| c | c | c | c |}
+    \hline  
+    V1 (mV) & $V_{\text{drop}}$ (mV) & $I_{\text{diode}}$ (A) & $V_{\text{diode}}$ (mV) \\
+    \hline
+    10.4 & 1.7 & 1.7x$10^{-10}$ & 8.7 \\
+    54.4 & 10.3 & 1.03x$10^{-9}$ & 44.1\\
+    219.7 & 103.6 & 1.036x$10^{-8}$ & 116.1\\
+    1217 & 1003 & 1.003x$10^{-7}$ & 214\\
+    10330 & 10010 & 1.001x$10^{-6}$ & 320\\
+    \hline
+    \end{tabular}
+    \label{table:circuit_1}
+\end{table}
+
+\begin{table}[ht]
+\caption{Measured and calculated values, Circuit 2} % title of Table
+\centering 
+    \begin{tabular}{| c | c | c | c |}
+    \hline  
+    V1 (mV) & $V_{\text{drop}}$ (mV) & $I_{\text{diode}}$ (A) & $V_{\text{diode}}$ (mV) \\
+    \hline
+    429 & 8.9 & 9.19x$10^{-6}$ & 420.1 \\
+    607 & 93.3 & 9.63x$10^{-5}$ & 513.7\\
+    1593 & 962 & 9.93x$10^{-4}$ & 631\\
+    10410 & 9650 & 9.96x$10^{-3}$ & 760\\
+    \hline
+    \end{tabular}
+    \label{table:circuit_2}
+\end{table}
+
+\begin{table}[ht]
+\caption{Measured values, Circuit 3} % title of Table
+\centering 
+    \begin{tabular}{| c | c |}
+    \hline  
+    $I_{\text{diode}}$ (mA) & $V_{\text{diode}}$ (mV) \\
+    \hline
+    104 & 890 \\
+    980 & 1664\\
+    \hline
+    \end{tabular}
+    \label{table:circuit_3}
+\end{table}
 
 \section*{Analysis}
 
