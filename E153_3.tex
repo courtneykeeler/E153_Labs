@@ -7,6 +7,7 @@
 \usepackage{tikz}
 \usepackage{circuitikz}
 \usepackage{siunitx}
+\usepackage{float}
 \newlength \figwidth
 \setlength \figwidth {0.75\linewidth}
 
@@ -42,7 +43,7 @@ The purpose of this lab is to understand diodes and build circuits to measure th
 \item Record the measured voltage drop across the diode and current running from the back of the diode to ground.
 \end{enumerate}
 
-\begin{figure}
+\begin{figure}[H]
 \centering
 \includegraphics[width=\figwidth, keepaspectratio=true]{lab3/lab3_image_1.png}
 \caption{Circuit to measure mid-range current values through the diode.}
@@ -105,14 +106,25 @@ The purpose of this lab is to understand diodes and build circuits to measure th
     \hline  
     $I_{\text{diode}}$ (mA) & $V_{\text{diode}}$ (mV) \\
     \hline
-    104 & 890 \\
-    980 & 1664\\
+    102.1 & 79.6 \\
+    1030 & 880\\
     \hline
     \end{tabular}
     \label{table:circuit_3}
 \end{table}
 
 \section*{Analysis}
+
+For an ideal diode, the graph of the log of the current running through the diode versus the voltage drop across the diode is linear with a positive slope. Looking at the curve in Figure \ref{fig:graph}, the experimental results agree well with expectations: the $\text{R}^2$ value of the linear fit is greater than 0.99.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth, keepaspectratio=true]{lab3/lab3_graph.png}
+\caption{Graph of the log of the current running through the diode versus the voltage drop across the diode. For an ideal diode, this curve is linear.}
+\label{fig:graph}
+\end{figure}
+
+ However, there are points that deviate from the line slightly, which could be due to several factors. First is the resolution of the measurement devices. Especially for low voltage or current measurements using the multimeter, the resolution is not great enough to capture the full picture of the variations in current or voltage.
 
 \section*{Calculations}
 
