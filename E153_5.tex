@@ -107,19 +107,33 @@ $$
 \subsection*{Results}
 Since the slope of the transistor's $I_C$ vs. $V_{CE}$ curve is so shallow, it was difficult to accurately measure changes in $I_C$ as the potentiometer varied. The only two datapoints collected are summarized in Table \ref{table:4-6_results}
 
-Vce = 2.85 V
-Ic = 5.29 mA
-
-Vce = 6.53 V
-Ic = 5.3 mA
+\begin{table}[ht]
+\caption{Experimental Results for part 4.5} % title of Table
+\centering 
+    \begin{tabular}{| c | c |}
+    \hline  
+    $I_C$ & $V_{CE}$\\
+    \hline
+    5.29 mA & 2.85 V\\
+    5.30 mA & 6.53 V\\
+    \hline
+    \end{tabular}
+    \label{table:4-6_results}
+\end{table}
 
 \subsection*{Analysis}
+The compliance range of this transistor is roughly 0.2 V upward (limited by the 15 V source of course.) This compliance range covers a change of about 0.02 mA in the collector current. Using the two data points in Table \ref{table:4-6_results}, the slope of the $I_C$ vs $V_{CE}$ curve is
+$$
+m = \frac{5.30 mA - 5.29 mA}{6.53V - 2.85V} = 2.7 \frac{\mu A}{V}
+$$
+Which makes the Early voltage
+$$
+V_A = \frac{5.29 mA}{2.7 \frac{\mu A}{V}} - 2.85 V = 1944 V
+$$
 
 Explain the max resistance behavior in terms of voltage compliance of the current source
 
 What causes the variations in output current as the load is varied within the compliance range? Verify by explanation and by making the appropriate measurements
-
-\subsection*{Calculations}
 
 
 \end{document}
