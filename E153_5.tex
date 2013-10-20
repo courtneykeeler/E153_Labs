@@ -7,6 +7,7 @@
 \usepackage{tikz}
 \usepackage{circuitikz}
 \usepackage{siunitx}
+\usepackage{float}
 \newlength \figwidth
 \setlength \figwidth {0.75\linewidth}
 
@@ -47,8 +48,10 @@ The purpose of this lab is to build bi-polar transistor circuits and do neat thi
 \caption{Voltage across each "diode"} % title of Table
 \centering 
     \begin{tabular}{| c | c |} 
+    \hline
     $V_{\text{BC}}$ & 0.711 V \\
     $V_{\text{BE}}$ & 0.717 V \\
+    \hline
     \end{tabular}
     \label{table:section_1}
 \end{table}
@@ -90,18 +93,25 @@ $$
     100 k$\Omega$ & 4.7 k$\Omega$ & 8.1 mA & 197.7 mV & 42.1 uA & 193 \\
     \hline
     \end{tabular}
-    \label{table:4-5_results}
+    \label{table:4_5_results}
 \end{table}
 
 \section*{4.6 Current Source}
 \subsection*{Procedure}
 
 \begin{enumerate}
-\item Construct the current sink circuit shown in Figure %\ref{3.4_circuit}
+\item Construct the current sink circuit shown in Figure \ref{fig:4.6_circuit}
 \item Slowly vary the 1 kOhm potentiometer while looking for changes in the measured collector current (use a digital ammeter).
 \item Monitor the $V_{CE}$ using a digital voltmeter
 \item Observe what happens at the maximum resistance of the pot
 \end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab5/circuit.jpg}
+\caption{Output waveform of the diode limiter when the input is a 2 $\text{V}_{\text{pp}}$ 8 kHz square wave.}
+\label{fig:4.6_circuit}
+\end{figure}
 
 \subsection*{Results}
 Since the slope of the transistor's $I_C$ vs. $V_{CE}$ curve is so shallow, it was difficult to accurately measure changes in $I_C$ as the potentiometer varied. The only two datapoints collected are summarized in Table \ref{table:4-6_results}
