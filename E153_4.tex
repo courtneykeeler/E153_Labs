@@ -167,6 +167,7 @@ This is how to come up with an equation to find the capacitor value from the rip
 \item Construct the circuit shown in Figure \ref{fig:circuit_3}
 \item View the output on the oscilloscope for a range of amplitudes of sin waves
 \item Repeat the above step for square waves, then triangle waves
+\item Add a 7805 three terminal voltage regulator to the power supply and record how much the  output voltage varies as the load changes from 1 mA to 50 mA
 \end{enumerate}
 
 \begin{figure}[H]
@@ -178,25 +179,73 @@ This is how to come up with an equation to find the capacitor value from the rip
 
 \subsection*{Results}
 
-Sin wave: 8kHz output for 8kHz input, .45 Vm out for .9 Vpp in
-as amplitude increases... 2 Vpp in, .5747 V out (it's approaching the drop across the diode)
-The higher the input voltage, the more current going through the resistor (and thus the diode), since only one diode is forward biased at a time and takes the current
+For a sin wave input, as the magnitude of the wave increases, the output magnitude also increases. However, it does so at a non-linear rate. The output peak output voltage is limited to 0.7 V and approaches it from below as the input magnitude increases. For this reason, the output for small input voltages resembles a sin wave, but as the input increases, the output begins to look like a square wave.
 
-Square: same thing, except closer to a square wave. The smaller the voltage, the closer to a square wave.
+The higher the input voltage, the more current going through the resistor (and thus the diode), since only one diode is forward biased (i.e., on) at a time and takes the entirety of the current.
 
-Triangle: gets turned into a square wave as the voltage input increases. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab4/3_7_1.jpg}
+\caption{Output waveform of the diode limiter when the input is a 2 $\text{V}_{\text{pp}}$ 8 kHz sine wave}
+\label{fig:3_7_1}
+\end{figure}
+
+When the input is a square wave, the output behaves the same way, except instead of starting as a sin wave it starts looking like an attenuated square wave. As the input magnitude increases, the attentuation increases and the output voltage stops increasing at 0.7 V.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab4/3_7_2.jpg}
+\caption{Output waveform of the diode limiter when the input is a 2 $\text{V}_{\text{pp}}$ 8 kHz square wave.}
+\label{fig:3_7_2}
+\end{figure}
+
+When the input is a triangle wave, the output behaves the same way, except instead of starting as a sin or square wave, it starts looking like an attenuated triangle wave. As the input magnitude increases, the attentuation increases and the output looks more and more like a square wave. The output voltage peak stops increasing at 0.7 V.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab4/3_7_3.jpg}
+\caption{Output waveform of the diode limiter when the input is a 2 $\text{V}_{\text{pp}}$ 8 kHz triangle wave.}
+\label{fig:3_7_3}
+\end{figure}
+
+The behavior of the circuit remains the same but the output voltage peak is doubled by adding an additional diode to each path of the original circuit.
+
+\begin{table}[ht]
+\caption{Output Voltage for Varying Loads} % title of Table
+\centering 
+    \begin{tabular}{| c | c | c | c |}
+    \hline  
+    Load (mA) & Resistor Value (k$\Omega$) & $\text{V}_{\text{out}}$ (V) & $ \text{I}_{\text{out}}$ (mA)\\
+    \hline
+    1 & 5 & 4.93 & 0.89 \\
+    50 &.1 & 4.93 & 49 \\
+    \hline
+    \end{tabular}
+    \label{table:voltage_out}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab4/3_7_4.jpg}
+\caption{Output waveform of the diode limiter when the input is a 2 $\text{V}_{\text{pp}}$ 8 kHz triangle wave and one additional diode has been added to each path to double the output voltage.}
+\label{fig:3_7_4}
+\end{figure}
 
 \subsection*{Analysis}
 
-Limiting voltage to 0.7 volts. 
+The purpose of this circuit is the limit the output voltage to 0.7 V. This may be used to protect a delicate sensor or other circuit component that cannot be subjected to greater than 0.7 V. Since it has been shown that adding diodes doubles the maximum output voltage, this circuit is not limited to applications that only have a limit of 0.7 V.
 
-We can double the amplitude of the voltage limited output by adding another diode to each path of the current. 
+Table \ref{table:voltage_out} shows that as the load varies from 1 mA to 50 mA, the output voltage does not change. The only change is in the output current, which increases for increasing load.
 
 \subsection*{Calculations}
 
-V = IR
-for 1mA load, we need 5kOhm resistor. (5.53 kOhm). Vout = 4.93 V, so Iout = 0.89mA
-for 50mA, we need 100 Ohm. (99.7 Ohm). Vout = 4.93 V, so Iout = .049A
+Use Ohm's law (V = IR) to calculate the output current based on the measured output voltage value and the known resistor value.
+$$
+I_{out} = \frac{V_{out}}{R_{load}} = \frac{4.93}{5k} = 0.89\text{ mA}
+$$
+$$
+I_{out} = \frac{V_{out}}{R_{load}} = \frac{4.93}{100} = 49\text{ mA}
+$$
 
 \end{document}
 
