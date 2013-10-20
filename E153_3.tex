@@ -120,7 +120,7 @@ For an ideal diode, the graph of the log of the current running through the diod
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\linewidth, keepaspectratio=true]{lab3/lab3_graph.png}
-\caption{Graph of the log of the current running through the diode versus the voltage drop across the diode. For an ideal diode, this curve is linear.}
+\caption{Graph of the log of the current running through the diode versus the voltage drop across the diode.} %For an ideal diode, this curve is linear.}
 \label{fig:graph}
 \end{figure}
 
@@ -133,21 +133,26 @@ $$
 I = \frac{V}{R}.
 $$
 Since the diode is in series with the resistor, and these are the only circuit elements, we know the current through the diode must be equal to the current through the resistor. 
-We use KVL to calculate the voltage drop across the diode. We know the value of V1, the voltage into the circuit, and we know the voltage drop across the resistor. By KCL:
+We use KVL to calculate the voltage drop across the diode. We know the value of $V_{\text{in}}$, the voltage into the circuit, and we know the voltage drop across the resistor, $V_R$. Using KVL, we can find the voltage drop across the diode:
 $$
-V_{\text{in}} - V_{\text{drop across diode}} - V_{\text{drop across resistor}} = 0.
+V_D = V_{\text{in}} - V_R.
 $$
 
-For the case of the circuit shown in Figure \ref{fig:circuit_2}, the current going into the diode is the sum of the current through the multimeter (R1) and the 1 k$\Omega$ resistor (R2). Since V1 is known and the voltage drop across R2 is measured, we can calculate
+For the case of the circuit in Figure \ref{fig:circuit_2}, the current going into the diode is the sum of the current through the multimeter ($R_1$) and the 1 k$\Omega$ resistor ($R_2$). Since $V_{\text{in}}$ is known and the voltage drop across $R_2$ and $R_1$, $V_R$ is measured, we can calculate
 $$
-I_1 = \frac{V_{\text{measured drop}}}{R1}
+I_{R_1} = \frac{V_R}{R1}
 $$
 $$
-I_2 = \frac{V_{\text{measured drop}}}{R2}
+I_{R_2} = \frac{V_R}{R2}
+$$
+$$
+I_D = I_1 + I_2
 $$
 We again use KVL to calculate the voltage drop across the diode:
 $$
-V_{\text{in}} - V_{\text{drop across R2}} - V_{\text{drop across diode}} = 0.
+V_D = V_{\text{in}} - V_R.
 $$
 
 \end{document}
+
+
