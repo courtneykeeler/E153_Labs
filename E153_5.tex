@@ -43,13 +43,19 @@ The purpose of this lab is to build bi-polar transistor circuits and do neat thi
 
 \subsection*{Results}
 
-BC: .711 V
-
-BE: .717 V
+\begin{table}[ht]
+\caption{Voltage across each "diode"} % title of Table
+\centering 
+    \begin{tabular}{| c | c |} 
+    $V_{\text{BC}}$ & 0.711 V \\
+    $V_{\text{BE}}$ & 0.717 V \\
+    \end{tabular}
+    \label{table:section_1}
+\end{table}
 
 \subsection*{Analysis}
 
-We are looking to see if the individual junctions act as diodes when independent from one another. We also expect the BC junction to be the larger of the two.
+We are looking to see if the transistor is in working condition. If it is, the two junctions BE and BC will look like back to back forward biased diodes when testing them with the digital multimeter's diode test function. As shown in Table \ref{table:section_1}, each junction has a drop of 0.7 V, just like a forward biased diode - meaning the transistor is working.
 
 \section*{4.5 Transistor Current Gain}
 \subsection*{Procedure}
@@ -57,117 +63,55 @@ We are looking to see if the individual junctions act as diodes when independent
 \begin{enumerate}
 \item Construct the circuit shown in Figure %\ref{4.5_circuit.png}
 \item Start with an initial R (from the resistance substitution box) of 4.7 MOhm
-\item Add the current at Ic using the multimeter in series in the circuit
-\item Turn on both power supplies and record the measured current
-\item Repeat for many values of R
-\end{enumerate}
-
-\begin{enumerate}
-\item Construct the circuit shown in Figure %\ref{4.5_circuit.png}
-\item Use the multimeter to measure IB and the Simpson 260 to measure IC
-\item Repeat for many values of R
+\item Measure $I_C$ and $I_B$ using two digital multimeters
+\item Turn on both power supplies and record the currents
+\item Repeat for enough values of R to cover three decades of collector current.
 \end{enumerate}
 
 \subsection*{Results}
-%R = 4.7 MOhm, Ic = .036 mA *, Vbase = 0.8mV 
-%R = 1 MOhm, Ic = 0.15 mA *, Vbase = 3.6mV
-%R = 470 kOhm, Ic = 0.29 mA
-%R = 100 kOhm, Ic = 1.37 mA
-%R = 47 kOhm, Ic = 2.50 mA *, Vbase = 60.1 mV
-%R = 10 kOhm, Ic = 8.73 mA
+Note that 
+$$
+\beta = \frac{I_C}{I_B}
+$$
+and
+$$
+I_B = \frac{V_{R_B}}{R_B}.
+$$
 
-R = 10 MOhm, Ic =0.9 mA , Vrb = 2.0 mV
-R = 4.7 MOhm, Ic = .19 mA, Vrb = 4.5 mV
-R = 470 kOhm, Ic = 1.7 mA, Vrb = 39.8 mV
-R = 100 kOhm, Ic = 8.1 mA, Vrb = 197.7 mV
-
-4.7 kOhm is really 4.58 kOhm
-
-*measured with Simpson, not DVM
-
-\subsection*{Analysis}
-
-
-\subsection*{Calculations}
+\begin{table}[ht]
+\caption{Experimental Results for part 4.5} % title of Table
+\centering 
+    \begin{tabular}{| c | c | c | c | c |}
+    \hline  
+    $R_B$ & $I_C$ & $V_{R_B}$ & $I_B$ & $\beta$\\
+    \hline
+    10 M$\Omega$ & 0.09 mA & 2.0 mV   & 0.2 nA   & 450000 \\
+    4.7 M$\Omega$ & 0.19 mA & 4.5 mV  & 0.957 nA & 198444 \\
+    470 k$\Omega$ & 1.7 mA & 39.8 mV  & 84.7 nA  & 20075 \\
+    100 k$\Omega$ & 8.1 mA & 197.7 mV & 1.98 uA  & 4097 \\
+    \hline
+    \end{tabular}
+    \label{table:4-5_results}
+\end{table}
 
 \section*{4.6 Current Source}
 \subsection*{Procedure}
 
 \begin{enumerate}
 \item Construct the current sink circuit shown in Figure %\ref{3.4_circuit}
-\item Slowly vary the 1 kOhm potentiometer while looking for changes in the measured collector current (use the Simpson).
-\item Monitor the collector/emitter voltage using the mutlimeter
+\item Slowly vary the 1 kOhm potentiometer while looking for changes in the measured collector current (use a digital ammeter).
+\item Monitor the $V_{CE}$ using a digital voltmeter
 \item Observe what happens at the maximum resistance of the pot
 \end{enumerate}
 
 \subsection*{Results}
+Since the slope of the transistor's $I_C$ vs. $V_{CE}$ curve is so shallow, it was difficult to accurately measure changes in $I_C$ as the potentiometer varied. The only two datapoints collected are summarized in Table \ref{table:4-6_results}
 
-%0 kOhm--
-%Vce: 13.85 V
-%Ic: .89 mA
-%
-%1 kOhm--
-%Vce = 12.94 V
-%Ic = 0.89 mA
-%
-%0 kOhm--
-%Vce =13.84  V
-%Ic = 0.89mA
-%
-%10 kOhm--
-%Vce =5.70  V
-%Ic = 0.885mA
-
-0 kOhm--
-Vce = 10.28 V
-Ic = 5.3 mA
-
-Ic = 
-
-Vce = 117.2 mV
-Ic = 5.1 mA
-
-Vce = 65.6  mV
-Ic = 4.8 mA
-
-Vce = 42.5 mV
-Ic = 4.4 mA
-
-Vce = 32.3 mV
-Ic = 4.0 mA
-
-Vce = 25.7 mV
-Ic = 3.6 mA
-
-Vce = 
-
-Vce = 95.4 mV
-Ic = 5.1 mA
-
-Vce = .068 V
-Ic=4.83
-
-Vce = 20.7 mV
-Ic = 3.2 mA
----------------- started measuring the voltage w/ Simpson and the current w/ digital multimeter
-
-Vce = 10 V
-Ic = 5.32 mA
-
-Vce = 7.4 V
-Ic = 5.30 mA
-
-Vce = 2.8 V
-Ic = 5.29 mA
-
-Vce = 9.6 V
-Ic = 5.31 mA
--------------- started measuring with two digital meters
 Vce = 2.85 V
 Ic = 5.29 mA
 
 Vce = 6.53 V
-Ic = 5,3 mA
+Ic = 5.3 mA
 
 \subsection*{Analysis}
 
