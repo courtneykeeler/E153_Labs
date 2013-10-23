@@ -30,7 +30,7 @@ Harvey Mudd College}
 \end{itemize}
 
 \section*{Purpose}
-The purpose of this lab is to build transformer circuits and do neat things with them.
+The purpose of this lab is to build transformer circuits and learn about their behavior and potential applicaitons.
 
 \section*{3.2 Half-Wave Rectifier}
 \subsection*{Procedure}
@@ -132,7 +132,7 @@ Table \ref{table:ripple_results} shows the numerical results of this section, wi
 \begin{figure}[H]
 \centering
 \includegraphics[width=\linewidth, keepaspectratio=true]{lab4/3-4_scope.png}
-\caption{Oscilloscope measurements from adding a 21.3 uF capacitor across the output. Measurement on left is $V_r$ and measurement on right is $\Delta$ t}
+\caption{Oscilloscope measurements from adding a 21.3 uF capacitor across the output. Measurement on left is $V_m$-$V_r$ and measurement on right is $\Delta$ t}
 \label{fig:3-4_scope}
 \end{figure}
 
@@ -168,11 +168,12 @@ As discussed in class, the ripple voltage for a such a setup is described as
 $$
 V_r = V_m(1-e^{\frac{-\Delta t}{\tau}}).
 $$
-where $ \tau = RC $. In an effort to verify the results by calculating the capacitances based on the ripple and comparing to measured capacitances, the capacitance is
+where $ \tau = RC $. This is the equation before the assumption that $1-e^{-x}=x$ is made. We cannot make this assumption experimentally since we are not sure that the rise time of the capacitor is sufficiently faster than that of the rising edge of the input sine wave.
+In an effort to verify the results,  the expected capacitances are calculated based on the measured ripple and compared to the measured capacitances. Rearranging the above equation for the capacitance is
 $$
 C = \frac{-\Delta t}{R\ln (1-(V_r/V_m))}.
 $$
-Using the above equation to solve for all the capacitances yields
+Using the above equation to solve for all the capacitances yields the results summarized in Table \ref{table:c_comparisons}.
 
 \begin{table}[ht]
 \caption{Experimental Ripple Results} % title of Table
@@ -188,6 +189,8 @@ Using the above equation to solve for all the capacitances yields
     \end{tabular}
     \label{table:c_comparisons}
 \end{table}
+
+These results show that the ripple voltage equation to find the capacitor value is accurate within  1.5\% on average.
 
 \section*{Transformers 3.7}
 \subsection*{Procedure}
@@ -275,6 +278,16 @@ $$
 $$
 I_{out} = \frac{V_{out}}{R_{load}} = \frac{4.93}{100} = 49\text{ mA}
 $$
+
+\section*{Conclusion}
+
+The half-wave rectifier portion of this lab experimentally proved the theoretical result derived in class that this circuit would produce an output that mirrored the positive regions of the input, with a 0.7V drop for the diode encountered. The full-wave bridge rectifier portion of this lab showed that the theoretical behavior derived in class does not match exactly what happens experimentally. It is true that the absolute value of the input voltage is mirrored in the output, with a 1.4V drop for the two diodes encountered. However, the theoretical results do not include the almost 400 $\mu$s flat region that occurs at each near-zero region due to the voltage required to "turn on" the diode. 
+
+The ripple voltage calculation portion of this lab showed that the simplified models for ripple voltage calculation cannot be used experimentally. Since it is not safe to assume the rise time of the capacitor is much smaller than the rising region of the input sine wave, we must use the more complicated mathematical model to calculate the capacitor value that caused a specific votlage ripple.
+
+Finally, the diode limiter portion of this lab introduced a novel application of diodes and how they can be used in applications that have strict upper limits on voltage. This circuit also showed how a triangle or sine wave can be turned into a square wave, or how the level of voltage llimit can be doubled.
+
+The puspose of this lab, which was to build transformer circuits and learn about their behavior and potential applicaitons, was clearly met.
 
 \end{document}
 
