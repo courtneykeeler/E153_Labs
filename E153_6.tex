@@ -24,7 +24,7 @@ Harvey Mudd College}
 	\item Tektronix 2212 Oscilloscope
 	\item Pomona 4550B (10X probe)
 	\item Elenco LCM-1950 Multimeter
-	\item 2N3904 transistor
+	\item 2N3904 transistor x2
 	\item Standard resistors
 	\item Standard capacitors
 \end{itemize}
@@ -33,11 +33,18 @@ Harvey Mudd College}
 The purpose of this lab is to build a pre-designed common emitter amplifier and compare the actual performance to the simulated performance. The purpose is also to examine the effects of loading on the CE amplifier circuit by cascading the amplifier with a simple emitter follower.
 
 \section*{Common Emitter Amplifier}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab6_images/cea.png}
+\caption{Common Emitter Amplifier. Image from Design Exercise 1.}
+\label{fig:cea}
+\end{figure}
+
 \subsection*{Procedure}
 
 \begin{enumerate}
-\item Measure the actual component values used in the CE design
-\item Recalculate the gain and frequency response of the CE amplifier with the values from the previous step
+\item Measure the actual component values used in the CEA design (shown in Figure \ref{fig:cea})
+\item Recalculate the gain and frequency response of the CEA with the values from the previous step
 \item Build the common emitter transistor amplifier designed in design project \#1
 \item Compare the actual gain and frequency response values with the simulated values
 \item Tweak component values 
@@ -95,14 +102,20 @@ $$
 Figure \ref{fig:simple_output} shows the 10.65 $V_{pp}$ output from the common emitter amplifier with an input of 400 $mV_{pp}$ - making the actual gain -27. While the magnitude of this measured gain is 6\% lower than expected, at least the measured gain is within the design specifications of $-25 \pm 10\%$. The reasons for this discrepancy could be 
 
 \section*{Emitter Follower}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.2\linewidth, keepaspectratio=true]{lab6_images/emitter_follower.png}
+\caption{Basic Emitter follower. Image from Wikipedia.}
+\label{fig:emitter_follower}
+\end{figure}
+
 \subsection*{Procedure}
 
 \begin{enumerate}
-\item Add a simple emitter follower to the CE amplifier from the previous section
+\item Add a simple emitter follower (shown in Figure \ref{fig:emitter_follower}) to the CE amplifier from the previous section
 \item Calculate the theoretical voltage gain reduction caused by the added loading
 \item Measure the actual voltage gain
-\item Measure the output impedance for small signals
-\item Measure the 
 \end{enumerate}
 
 \subsection*{Calculations}
@@ -134,38 +147,23 @@ $$
 
 As shown in Figure \ref{fig:loading_output}, the measured voltage at that point was $V_{CEA,closed}$ = 9.67 $V_{pp}$, 2\% below the expected output.
 
-Measured input amplitude at which output became non-linear: 500 m$\text{V}_{pp}$.
-%becomes non-linear very quickly: 500mVpp (reaches saturation)
 
+\section*{Nonlinearity}
+\subsection*{Procedure}
+\begin{enumerate}
+\item Increase the input amplitude until the output becomes nonlinear.
+\end{enumerate}
 
-%small signal output impedance derivation:
+\subsection*{Results}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab6_images/loading_output.jpg}
+\caption{Output from Emitter Follower with input of 500 $mV_{pp}$.}
+\label{fig:nonlinear_output}
+\end{figure}
 
-\subsection*{Analysis}
-
-We expect to see a drop in voltage gain when the emitter follower is added because it adds a load to the output of the common emitter amplifier. The larger this load is, the smaller the drop is signal gain. We see a drop from 10.6 V out to 9.6 V out, which corresponds well to the calculated expected value. The discrepancy of 0.2 V can be attributed to inaccuracy in measurements.
-
-The output saturates very quickly when the input amplitude is increased to find the start of the non-linear response region. The emitter follower is responsible for this because it saturates high very quickly due to the fact that there is no resistor on the collector branch, which means the Q point voltage is high and already closer to the $V_{cc}$ value.
-%emitter follower is saturating high because there is no Rc, so the Q point is high in voltage and is saturating at 20 V
+Increasing the input amplitude to 500 $mV_{pp}$ created the emitter follower output shown in \ref{fig:nonlinear_output} - clearly nonlinear. The output saturates very quickly as the input amplitude is increased because the emitter follower has no $R_C$. The lack of a collector resistor means the Q point voltage is high and already closer to the $V_{cc}$ value, meaning the transistor will reach saturation more easily than if there were an $R_C$.
 
 \section*{Conclusion}
-
-In conclusion, this lab has shown that 
-. The purposes of the lab, which was to build a pre-designed common emitter amplifier and compare the actual performance to the simulated performance, as well as  examine the effects of loading on the CE amplifier circuit, were met.
-
+In conclusion, we observed what we expected for every section to with 6\%. We expected to see a drop in voltage gain when the emitter follower was added because it added a load to the output of the common emitter amplifier. The larger this load is, the smaller the drop is signal gain. We saw a drop from 10.65 V out to 9.67 V out, which corresponds well to the calculated expected value. The discrepancy of 0.2 V can be attributed to inaccuracy in measurements. Similarly, our unloaded output from the common emitter amplifier was within 6\% of expected magnitude. This lab has demonstrated the effects of loading and saturation when dealing with cascading transistor circuits.
 \end{document}
-
-%photo 297: output of entire CE circuit, shows gain at 25 Hz
-%photo 298: voltage after stage 1
-%photo 299: voltage after emitter follower (it's been shifter down by 0.7!)
-
-%\begin{table}[ht]
-%\caption{Voltage across each "diode"} % title of Table
-%\centering 
-%    \begin{tabular}{| c | c |} 
-%    \hline
-%    $V_{\text{BC}}$ & 0.711 V \\
-%    $V_{\text{BE}}$ & 0.717 V \\
-%    \hline
-%    \end{tabular}
-%    \label{table:section_1}
-%\end{table}
