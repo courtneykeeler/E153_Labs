@@ -30,7 +30,7 @@ Harvey Mudd College}
 \end{itemize}
 
 \section*{Purpose}
-The purpose of this lab is to build a pre-designed common emitter amplifier and compare the actual performance to the simulated performance. The purpose is also to examine the effects of loading on the CE amplifier circuit.
+The purpose of this lab is to build a pre-designed common emitter amplifier and compare the actual performance to the simulated performance. The purpose is also to examine the effects of loading on the CE amplifier circuit by cascading the amplifier with a simple emitter follower.
 
 \section*{Common Emitter Amplifier}
 \subsection*{Procedure}
@@ -52,8 +52,8 @@ Measured component values for common emitter amplifier:
 \item $R_2$ = 18.24 M$\Omega$
 \item $R_{E1}$ = 550 $\Omega$
 \item $R_{E2}$ = 4.58 k$\Omega$
-\item $C_1$ = .339+.342 = .681 $\mu$F
-\item $C_2$ = 323.5+332.3 = 655.8 $\mu$F
+\item $C_1$ = .339 + .342 = .681 $\mu$F
+\item $C_2$ = 323.5 + 332.3 = 655.8 $\mu$F
 \item $\beta$ = 231
 \end{itemize}
 
@@ -83,9 +83,14 @@ $$
 A_v = -28.34.
 $$
 
-\subsection*{Analysis}
-
-We can see that the calculated gain value is higher than the actual measured gain value. Only the measured gain value is within the original design specifications. The reasons for this discrepancy could be 
+\subsection*{Physical Implementation \& Analysis}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab6_images/simple_output.jpg}
+\caption{Output from Common Emitter Amplifier with input of 400  $mV_{pp}$.}
+\label{fig:simple_output}
+\end{figure}
+Figure \ref{fig:simple_output} shows the 10.65 $V_{pp}$ output from the common emitter amplifier with an input of 400 $mV_{pp}$ - making the actual gain -27. While the magnitude of this measured gain is 6\% lower than expected, at least the measured gain is within the design specifications of $-25 \pm 10\%$. The reasons for this discrepancy could be 
 
 \section*{Emitter Follower}
 \subsection*{Procedure}
