@@ -84,12 +84,14 @@ A_v = -28.34.
 $$
 
 \subsection*{Physical Implementation \& Analysis}
+
 \begin{figure}[H]
 \centering
 \includegraphics[width=\figwidth, keepaspectratio=true]{lab6_images/simple_output.jpg}
 \caption{Output from Common Emitter Amplifier with input of 400  $mV_{pp}$.}
 \label{fig:simple_output}
 \end{figure}
+
 Figure \ref{fig:simple_output} shows the 10.65 $V_{pp}$ output from the common emitter amplifier with an input of 400 $mV_{pp}$ - making the actual gain -27. While the magnitude of this measured gain is 6\% lower than expected, at least the measured gain is within the design specifications of $-25 \pm 10\%$. The reasons for this discrepancy could be 
 
 \section*{Emitter Follower}
@@ -103,36 +105,38 @@ Figure \ref{fig:simple_output} shows the 10.65 $V_{pp}$ output from the common e
 \item Measure the 
 \end{enumerate}
 
-%\begin{figure}[H]
-%\centering
-%\includegraphics[width=\figwidth, keepaspectratio=true]{lab5/circuit_2.jpg}
-%\caption{Circuit to measure the gain of the transistor.}
-%\label{fig:4.5_circuit}
-%\end{figure}
+\subsection*{Calculations}
+
+Without the emitter follower attached, the output amplitude, as shown in Figure \ref{fig:simple_output}, is 10.65 $V_{pp}$. Since the emitter follower has some non-infinite input impedance, the output signal from the common emitter amplifier should have a reduced amplitude due to loading. This expected reduction is summarized by the following (where CEA stands for Common Emitter Amplifier and EF for Emitter Follower)
+$$
+V_{CEA,closed} = V_{CEA,open}\frac{R_{in,EF}}{R_{out,CEA}+R_{in,EF}},
+$$
+where $R_{in,EF}$ is approximately $(1+\beta)R_E$ since $r_{\pi,EF} \ll (1+\beta)R_E$ and $R_{out,CEA} = R_C$ . Thus
+$$
+V_{CEA,closed} = 10.65 \frac{(1+243)982}{17670+(1+243)982} = 9.87 V.
+$$
+
 
 \subsection*{Results}
 
-Measured component values for emitter follower:
-$R_{E}$=982 $\Omega$,
-$\beta$ = 243.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab6_images/loading_output.jpg}
+\caption{Output from Common Emitter Amplifier with input of 400 $mV_{pp}$ and emitter follower loading.}
+\label{fig:loading_output}
+\end{figure}
 
-Measured CE output voltage for 400 m$\text{V}_{pp}$ input signal: 9.6 V.
-%was 10.6, is now 9.6 V, so the gain dropped 
+The measured component values for the emitter follower are $R_{E}$ = 982 $\Omega$ and $\beta$ = 243. Thus the expected voltage after the Common Emitter Amplifier is
+
+$$
+V_{CEA,closed} = 10.65 \frac{(1+243)982}{17670+(1+243)982} = 9.87 V.
+$$
+
+As shown in Figure \ref{fig:loading_output}, the measured voltage at that point was $V_{CEA,closed}$ = 9.67 $V_{pp}$, 2\% below the expected output.
 
 Measured input amplitude at which output became non-linear: 500 m$\text{V}_{pp}$.
 %becomes non-linear very quickly: 500mVpp (reaches saturation)
 
-\subsection*{Calculations}
-
-Since we know the value of the voltage at the point $v_{out}$ shown in Figure %/ref
-when the circuit is open (i.e., does not include the emitter follower), we can calculate what we expect the voltage at this same point to be when the circuit is closed:
-$$
-v_{out,closed} = v_{out,open}\frac{R_{in,ef}}{R_{out,open}+R_{in,ef}},
-$$
-where $R_{in,ef}$ is the input impedance of the emitter follower, $R_{out,open}$ is the output impedance of the stand alone CE amplifier, and $R_{in,ef}$ is approximated by $(1+\beta)R_E$ since $r_{\pi}$ is small in comparison.
-$$
-v_{out,closed} = 10.6 \frac{(1+243)982}{17670+(1+243)982} = 9.87 V.
-$$
 
 %small signal output impedance derivation:
 
