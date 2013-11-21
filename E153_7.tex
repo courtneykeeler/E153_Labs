@@ -90,13 +90,58 @@ $$
 
 \subsection*{Results}
 
+In order to compare the performance of the common emitter amplifier with a common emitter + push pull follower system, the outputs of each are individually and combined are reported.
 
+Figure \ref{fig:ce_out} shows the output of the original common emitter amplifier from Lab 6. This has already been shown to have a gain of -25. However, it is important to note that the DC offset of this circuit, shown in Figure \ref{fig:ce_dc}, was designed too high (14.25 V). For this reason, there is slight capping at the positive peak of the output, which prevents the output from going any higher. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab7_images/uncoupled_CE_output.jpg}
+\caption{Output of the Lab 6 common emitter amplifier.}
+\label{fig:ce_out}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab7_images/CE_DC_offset.jpg}
+\caption{DC offset of the output of the Lab 6 common emitter amplifier.}
+\label{fig:ce_dc}
+\end{figure}
+
+The common emitter amplifier was also designed with an output impedance of 18 k$\Omega$ whereas the push pull follower has an imput inpedance on the order of 6 k$\Omega$. This will influence the interaction between the two circuits and effect the performance of the pair.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab7_images/coupled_CE_output.jpg}
+\caption{Output of the Lab 6 common emitter amplifier with a load of the Lab 7 push pull amplifier.}
+\label{fig:ce_out_load}
+\end{figure}
+
+When the push pull follower is attached to the output of the common emitter, the output of the common emitter amplifier changes. The gain, which was around -25, drops significantly. Figure \ref{fig:ce_out_load} shows that a 400 mV peak to peak signal only produces an output of 2.962 V.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab7_images/pushpull_only_output.jpg}
+\caption{Output of the Lab 7 push pull amplifier for an input signal of 1 Vpp.}
+\label{fig:pp_out}
+\end{figure}
+
+Alternatively, the push pull follower, when not attached to the common emitter amplifier, has an output that is shown in Figure \ref{fig:pp_out}. Since this circuit is designed to be a follower, we do not expect to see any amplification. What we don't want is significant attenuation, and Figure \ref{fig:pp_out} shows that a 1 V input signal outputs a .8343 V signal.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\figwidth, keepaspectratio=true]{lab7_images/pushpull_output.jpg}
+\caption{Output of the Lab 7 push pull amplifier when tied to the output of the Lab 6 common emitter amplifier.}
+\label{fig:pp_ce_out}
+\end{figure}
+
+When the common emitter amplifier and push pull follower are connected, we expect to see the output of the common emitter mirrored at the follower output. While the gain is not maintained in the addition of the follower, the loaded amplified signal is indeed seen output by the follower with only slight attenuation. Figure \ref{fig:pp_ce_out} shows that the expected output of 2.962 V is actually 2.525 V. It is also interesting to note that the large positive DC offset is removed in the output of the push pull emitter, and replaced with a slight negative DC offset. Part of the removal of the DC bias is due to the coupling capacitor used to combine the output of the common emitter amplifier with the input of the push pull follower.
 
 \section*{Conclusion}
 
 In conclusion, we have demonstrated expected functionality of the complementary push pull amplifier in two ways. Firstly, we have confirmed its input resistance by demonstrating attenuation due to loading by cascading it with the Common Emitter Amplifier from lab 6, of which we know the output resistance. Secondly, we have confirmed its gain by measuring the magnitude of the input and output AC signal. In both cases, our measured results were within 10\% of expected, an error margin attributable to simplifying assumptions and measurement error. We were able to listen to our output signal on speakers and hear the tone and volume change as we varied frequency and amplitude, though the sound was very weak in all cases.
 
-The performance of this push pull follower is sub-par compared to that of the simple emitter follower from lab 6 only because we did not design this push pull amplifier to be in cascade with the CEA. Meaning their input and output resistances of the PPA and CEA respectively are incorrectly proportioned such that there is an unreasonable amount of attentuation between the two stages. However, this push pull amplifier wastes much less power than the simple emitter follower. Were it designed correctly, the efficiency of the push pull amplifier would make it a superior choice in most cases.
+The performance of this push pull follower is sub-par compared to that of the simple emitter follower from lab 6 only because we did not design this push pull amplifier to be in cascade with the CEA. Meaning their input and output resistances of the PPF and CEA respectively are incorrectly proportioned such that there is an unreasonable amount of attentuation between the two stages. However, this push pull amplifier wastes much less power than the simple emitter follower. Were it designed correctly, the efficiency of the push pull amplifier would make it a superior choice in most cases.
 
 \end{document}
 
