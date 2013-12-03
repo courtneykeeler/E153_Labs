@@ -1,0 +1,121 @@
+\documentclass[12pt,letterpaper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[justification=centering]{caption}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{siunitx}
+\usepackage{float}
+\newlength \figwidth
+\setlength \figwidth {0.75\linewidth}
+
+\begin{document}
+
+\title{E153 Laboratory Assignment \#10}
+\author{Courtney Keeler and Stephen Pinto\\
+Harvey Mudd College}
+\date{December 13, 2013}
+\maketitle
+
+\section*{List of Materials}
+\begin{itemize}
+	\item Agilent E360A power supply (x2)
+	\item Tektronix 2212 Oscilloscope
+	\item Pomona 4550B (10X probe)
+	\item Elenco LCM-1950 Multimeter
+	\item 2N3904 transistor
+	\item Standard resistors
+	\item Standard capacitors
+\end{itemize}
+
+\section*{Purpose}
+The purpose of this lab is to build the cascode amplifier designed in Design Project \#2 and verify the performance specifications in lab. The final design of the cascode amplifier is shown in Figure %\ref{fig:cascode_circuit}
+.
+
+\section*{Results}
+
+In order to have both a +80 and +20 volt DC power supply for the circuit, a voltage divider must be constructed to drop an 80 V input voltage to 12 volts. The circuit for such a task is shown in Figure %\ref{fig:voltage_divider}
+.
+
+%resistor values: 1 K and 5.66 K
+%new resisor values after vout node got too hot: 270 Ohm and 1.5k + 33 (we made this resistor smoke because it was too small for the current load. We need to use the 1 W resistors from the plastic bin: 2.7K and 1/2 W resistors from the stock room: 470.
+%after R_C frying, we're upping the voltage divider values again: 1K and 5.7K 1Watt resistors. Nothing fried, but will the loading be an issue? Yeah, 9.7 instead of 12 V. 
+
+%so now we're using a third power supply for the 12 V. Still too big of a drop across R_C (2.2 Watts). 
+
+The resistor, capacitor, and inductor values used are listed in Table \ref{tab:values}.
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|}
+	\hline
+	 & Designed Value & New Value & Measured Value \\
+	\hline
+	$R_1$ & 33 k$\Omega$ & 15 k$\Omega$ &  14.75 $\Omega$\\	%original: R_1: 33K, R_2: 10K
+	\hline
+	$R_2$ & 10 k$\Omega$ & 5.6 k$\Omega$ & 5.45 k$\Omega$ \\
+	\hline
+	$R_E$ & 82 $\Omega$& -- &--\\
+	\hline
+	$R_{E1}$ &  --& 82 $\Omega$&83 $\Omega$\\
+	\hline
+	$R_{E2}$ &  --& 240 $\Omega$ &240 $\Omega$\\
+	\hline
+	$R_C$ & 2.2 k$\Omega$ & 2.2 k$\Omega$ &2.14 k$\Omega$\\
+	\hline
+	C & 10 $\mu$F & 10 $\mu$F &11 $\mu$F\\	%"The bigger the better" --S. Pinto
+	\hline
+	L & 68 $\mu$H & 82 $\mu$H &82 $\mu$H\\
+	\hline
+	$C_{RE}$& -- & 100 $\mu$F &97.2 $\mu$F\\	%"The bigger the better" --S. Pinto
+	\hline
+	
+\end{tabular}
+\caption{Table of designed versus measured values for the components of the cascode amplifier.}
+\label{tab:values}
+\end{table}
+
+Table \ref{tab:values} shows that the original designed values for $R_1$ and $R_2$ were 33 k$\Omega$ and 10 k$\Omega$, respectively. However, these values were raised in an attempt to increase the input resistance seen by the 12 V input so that the loading effects were lessened and an actual +12V could be achieved at the Q2  base. However, after raising these values and and voltage divider resistor values, the voltage drop across $R_C$ was too great (around 2.2 Watts for a 1 Watt resistor). In order to remedy this problem, a third power supply was used for the 12 V instead of a voltage divider. However, while the 12 V input could be exactly achieved, this did not remedy the power across $R_C$. 
+
+%we fried the positive input node of the scope. 
+%we made R_1 R_2 bigger, upped Watt rating of voltage divider, now R_C is frying.
+
+Upon inspection, we discovered that the designed circuit did not meet the beta independance requirement of $R_{TH} << (1 + \beta)$. To remedy this problem, an additional resistor was added in series with $R_E$ and bypassed with a capacitor (90 $\mu$F, see calculations). That is, the DC signal analysis includes all of $R_{E1}+R_{E2}$, whereas the AC signal analysis includes only the original $R_{E1}$. Alternatively, the same effect can be achieved by lowering the magnitude of $R_1$ and $R_2$ but keeping the ratio of the two resistances the same. By tweaking both of these parameters, we came upon the values shown in the New Value column of Table \ref{tab:values}.
+
+%beta independance: R_TH <<  (1+beta)R_E. 	We currently don't satisfy this, so we need to lower R_1 and R_2 or increase R_E with a bypass capacitor. When doing this, we will need to increase the base voltage slightly so that we can maintain the same base current.
+
+After getting the beta independance sorted out, the next issue became the high corner frequency. It was much lower than the simulation results, so we took the Q2 collector and connected it to $R_C$ off of the bread board. This was done because the breadboard has internal capacitance, which negatively affects the bandwidth. 
+
+\subsection*{DC Offset}
+
+it's 46.6 V.
+
+\subsection*{Gain}
+
+pretty good
+
+\subsection*{Bandwidth}
+
+meh. good low, bad high.
+
+\subsection*{Input Resistance}
+
+didn't even consider this.
+
+\section*{Calculations}
+
+\noindent
+$R_{E2}$ bypass capacitor calculations:
+$$
+C = \frac{1}{2\pi f (R_{E1}||R_{E2})}\, \text{ , where} f=30Hz.
+$$
+$$
+C = \frac{1}{2 \pi (30)(62.9k)} = 84.34 \mu F
+$$
+
+\section*{Conclusion}
+
+In conclusion, this lab has shown that the results achieved in Multisim do not exactly match those seen in the laboratory setting. There are many subleties to designed such a high amplification circuit that are easily overlooked in simulation (such as resistor power limits). The purpose of the lab, which was to build a working cascode amplifier circuit, was met.
+
+\end{document}
